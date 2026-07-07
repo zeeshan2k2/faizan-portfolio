@@ -1,0 +1,58 @@
+import { siteContent } from "@/content/site";
+
+export function TopBar() {
+  const { brand, availability, location } = siteContent;
+
+  return (
+    <header className="relative z-20 border-b border-[var(--line)]">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
+        <div className="absolute left-[calc(50%-520px)] top-0 size-2 bg-white/55" />
+        <div className="absolute right-[calc(50%-520px)] top-0 size-2 bg-white/55" />
+        <div className="absolute bottom-0 left-[calc(50%-520px)] size-2 bg-white/55" />
+        <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
+      </div>
+      <div className="mx-auto grid min-h-24 w-full max-w-5xl grid-cols-[1fr_auto] items-center gap-4 px-5 py-5 sm:grid-cols-3 sm:px-8 lg:min-h-32">
+        <a
+          href="#home"
+          className="group flex min-w-0 items-center gap-3 justify-self-start"
+          aria-label={`${brand.name} home`}
+        >
+          <span className="relative grid size-9 shrink-0 place-items-center sm:size-11">
+            <span className="absolute inset-x-1 top-1/2 h-4 -translate-y-1/2 rotate-45 rounded-[3px] bg-white transition-transform duration-300 group-hover:scale-105 sm:h-5" />
+            <span className="absolute inset-x-1 top-1/2 h-4 -translate-y-1/2 -rotate-45 rounded-[3px] bg-white transition-transform duration-300 group-hover:scale-105 sm:h-5" />
+            <span className="relative h-1.5 w-7 rounded-full bg-[var(--background)] sm:w-8" />
+            <span className="sr-only">{brand.logoLabel}</span>
+          </span>
+          <span className="truncate text-xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+            {brand.name}
+          </span>
+        </a>
+
+        <div className="hidden justify-self-center sm:block">
+          <div className="flex items-center gap-4 rounded-full border border-[var(--line-strong)] bg-black/28 px-6 py-4 text-sm text-[var(--muted)] shadow-[0_0_40px_rgba(0,0,0,0.22)] backdrop-blur-md lg:min-w-72 lg:justify-center lg:text-base">
+            <span
+              className="size-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.65)]"
+              aria-hidden="true"
+            />
+            <span>{availability.text}</span>
+          </div>
+        </div>
+
+        <div className="hidden justify-self-end text-right text-base font-medium leading-relaxed tracking-[-0.02em] text-white/88 sm:block lg:text-xl">
+          <p>{location.line1}</p>
+          <p>{location.line2}</p>
+        </div>
+
+        <div className="col-span-2 flex justify-end sm:hidden">
+          <div className="flex items-center gap-2 rounded-full border border-[var(--line)] bg-white/[0.04] px-3 py-2 text-xs text-[var(--muted)] backdrop-blur-md">
+            <span
+              className="size-2 rounded-full bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.6)]"
+              aria-hidden="true"
+            />
+            <span>{availability.text}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

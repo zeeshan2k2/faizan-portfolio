@@ -1,0 +1,136 @@
+export type NavIcon =
+  | "home"
+  | "experience"
+  | "work"
+  | "about"
+  | "tech"
+  | "services"
+  | "contact"
+  | "email";
+
+export type NavItem = {
+  id: string;
+  label: string;
+  href: `#${string}`;
+  icon: NavIcon;
+};
+
+export type SocialIcon = "code" | "profile" | "gallery" | "mail";
+
+export type SocialLink = {
+  label: string;
+  href: string;
+  icon: SocialIcon;
+};
+
+export const siteContent = {
+  brand: {
+    name: "Faizan",
+    logoLabel: "FZ",
+  },
+  hero: {
+    name: "Faizan",
+    signatureName: "Faizan",
+    introPrefix: "Hi, I'm",
+    introName: "Faizan",
+    rolePrefix: "Working as",
+    roleTitle: "Web-designer and Developer",
+    supportingLine: "Available for focused product, portfolio, and brand-led web builds.",
+    ctas: {
+      primary: {
+        label: "Get Started",
+        href: "#contact",
+      },
+      secondary: {
+        label: "View My Work",
+        href: "#work",
+      },
+    },
+    media: {
+      label: "Hero media placeholder",
+      status: "Hero portrait",
+      src: "/images/home.png",
+      alt: "Portrait for the hero section",
+    },
+    socials: [
+      {
+        label: "GitHub",
+        href: "https://github.com/",
+        icon: "code",
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/",
+        icon: "profile",
+      },
+      {
+        label: "Instagram",
+        href: "https://www.instagram.com/",
+        icon: "gallery",
+      },
+      {
+        label: "Email",
+        href: "mailto:hello@example.com",
+        icon: "mail",
+      },
+    ] satisfies SocialLink[],
+  },
+  availability: {
+    text: "Available for 3 projects",
+    status: "available",
+  },
+  location: {
+    line1: "San Francisco, CA",
+    line2: "USA",
+  },
+  navigation: [
+    {
+      id: "home",
+      label: "Home",
+      href: "#home",
+      icon: "home",
+    },
+    {
+      id: "experience",
+      label: "Experience",
+      href: "#experience",
+      icon: "experience",
+    },
+    {
+      id: "work",
+      label: "Selected work",
+      href: "#work",
+      icon: "work",
+    },
+    {
+      id: "about",
+      label: "About",
+      href: "#about",
+      icon: "about",
+    },
+    {
+      id: "tech",
+      label: "Tech stack",
+      href: "#tech",
+      icon: "tech",
+    },
+    {
+      id: "services",
+      label: "Services",
+      href: "#services",
+      icon: "services",
+    },
+    {
+      id: "contact",
+      label: "Contact",
+      href: "#contact",
+      icon: "contact",
+    },
+    {
+      id: "email",
+      label: "Email",
+      href: "#email",
+      icon: "email",
+    },
+  ] satisfies NavItem[],
+};
