@@ -41,9 +41,14 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="flex min-h-[calc(100svh-96px)] items-start justify-center px-0 pb-14 pt-9 sm:min-h-[calc(100svh-128px)] sm:pb-16 sm:pt-14 lg:pt-16"
+      className="relative flex min-h-[calc(100svh-96px)] items-start justify-center px-0 pb-14 pt-9 sm:min-h-[calc(100svh-128px)] sm:pb-16 sm:pt-14 lg:pt-16"
       aria-label="Hero"
     >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
+        <div className="absolute bottom-0 left-[calc(50%-520px)] size-2 bg-white/55" />
+        <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
+      </div>
+
       <motion.div
         className="mx-auto flex w-full max-w-4xl flex-col items-center text-center"
         initial="hidden"

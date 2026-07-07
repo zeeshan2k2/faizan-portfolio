@@ -23,6 +23,12 @@ export type SocialLink = {
   icon: SocialIcon;
 };
 
+export type ExperienceRole = {
+  title: string;
+  date: string;
+  href: string;
+};
+
 export const siteContent = {
   brand: {
     name: "Faizan",
@@ -82,6 +88,29 @@ export const siteContent = {
   location: {
     line1: "San Francisco, CA",
     line2: "USA",
+  },
+  experience: {
+    eyebrow: "Experiences",
+    headline:
+      "Faizan offers more than just a website it's a digital space designed to reflect your unique style inspiration",
+    hoverLabel: "Visit Framer",
+    roles: [
+      {
+        title: "Product Designer",
+        date: "2023 - Present",
+        href: "https://www.framer.com/",
+      },
+      {
+        title: "UI/UX Designer",
+        date: "2022 - 2023",
+        href: "https://www.framer.com/",
+      },
+      {
+        title: "Intern UI Designer",
+        date: "2020 - 2021",
+        href: "https://www.framer.com/",
+      },
+    ] satisfies ExperienceRole[],
   },
   navigation: [
     {
