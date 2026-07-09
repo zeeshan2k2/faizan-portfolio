@@ -120,6 +120,89 @@ For flip pills:
 - use `rotateY(180deg)` for the horizontal flip.
 - orange hover background should use `var(--accent)`.
 
+## Selected Work Card Design
+
+Use this only as the visual and hover reference for project/work cards. Do not treat this as a sticky-scroll instruction.
+
+Card structure:
+
+- Large rounded media card.
+- Full image background using `next/image`.
+- Image should cover the full card with `object-cover object-center`.
+- Card radius should stay close to:
+  - mobile/base: `rounded-[24px]`
+  - desktop: `sm:rounded-[32px]`
+- Card height should stay close to:
+  - mobile/base: `h-[420px]`
+  - tablet: `sm:h-[500px]`
+  - desktop: `lg:h-[540px]`
+- Use a dark readability overlay on top of the image:
+  - horizontal black overlay from left/right
+  - vertical overlay darker near the bottom
+- Bottom content panel:
+  - sits inside the image card near the bottom
+  - `inset-x-4 bottom-4`
+  - `sm:inset-x-5 sm:bottom-5`
+  - rounded glass panel, around `rounded-[22px]` / `sm:rounded-[26px]`
+  - `bg-black/58`
+  - `backdrop-blur-xl`
+  - subtle border: `border border-white/8`
+  - shadow close to `shadow-[0_18px_56px_rgba(0,0,0,0.42)]`
+
+Panel content:
+
+- Left side:
+  - muted category text, e.g. `Mobile App Design`
+  - large project title, e.g. `X-direct Mobile`
+  - small rounded date pill, e.g. `May 2026`
+- Right side:
+  - large square rounded arrow button
+  - white border by default
+  - transparent/dark background by default
+
+Project title style:
+
+```tsx
+className="mt-2 truncate font-sans text-[clamp(2rem,4.1vw,3.6rem)] font-normal leading-none tracking-[-0.035em] text-white transition-colors duration-300 group-hover:text-[var(--accent)]"
+```
+
+Hover behavior:
+
+- Hover trigger should be the whole card, not only the arrow button.
+- On card hover:
+  - project title turns orange using `var(--accent)`
+  - arrow button border turns orange
+  - arrow icon stroke turns orange
+  - arrow button background should not become solid orange
+  - arrow button can lift slightly
+  - arrow icon should animate diagonally out/in like the primary CTA arrow
+
+Arrow button base:
+
+```tsx
+className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-[20px] border border-white/22 bg-black/12 transition duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_34px_rgba(255,106,26,0.18)] sm:size-24 sm:rounded-[26px]"
+```
+
+Arrow animation:
+
+```tsx
+<ArrowUpRight
+  className="absolute size-8 transform-gpu stroke-white transition-all duration-300 ease-out group-hover:translate-x-16 group-hover:-translate-y-16 group-hover:stroke-[var(--accent)] sm:size-12 sm:group-hover:translate-x-24 sm:group-hover:-translate-y-24"
+  aria-hidden="true"
+/>
+<ArrowUpRight
+  className="absolute size-8 -translate-x-16 translate-y-16 transform-gpu stroke-white transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:stroke-[var(--accent)] sm:size-12 sm:-translate-x-24 sm:translate-y-24"
+  aria-hidden="true"
+/>
+```
+
+Important:
+
+- The arrow button itself must have `overflow-hidden`.
+- Do not wrap the arrow SVGs in a smaller clipped span, or the animation will appear clipped before reaching the button border.
+- Use explicit `stroke-white` and `group-hover:stroke-[var(--accent)]` on the SVGs instead of relying only on inherited text color.
+- Keep the whole card as `group` so title and arrow react together.
+
 ## Motion
 
 - Use Framer Motion lightly.

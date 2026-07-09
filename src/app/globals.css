@@ -59,7 +59,7 @@ select {
 .site-shell {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 23% 52%, rgba(255, 92, 20, 0.16), transparent 24rem),
     radial-gradient(circle at 78% 82%, rgba(255, 68, 16, 0.11), transparent 22rem),
