@@ -2,11 +2,12 @@ export type NavIcon =
   | "home"
   | "experience"
   | "work"
-  | "about"
+  | "brands"
   | "tech"
   | "services"
-  | "contact"
-  | "email";
+  | "process"
+  | "faq"
+  | "contact";
 
 export type NavItem = {
   id: string;
@@ -132,22 +133,28 @@ export const siteContent = {
       icon: "work",
     },
     {
-      id: "about",
-      label: "About",
-      href: "#about",
-      icon: "about",
-    },
-    {
-      id: "tech",
-      label: "Tech stack",
-      href: "#tech",
-      icon: "tech",
-    },
-    {
       id: "services",
       label: "Services",
       href: "#services",
       icon: "services",
+    },
+    {
+      id: "tech-stack",
+      label: "Tech stack",
+      href: "#tech-stack",
+      icon: "tech",
+    },
+    {
+      id: "brands",
+      label: "Brands",
+      href: "#brands",
+      icon: "brands",
+    },
+    {
+      id: "process",
+      label: "Process",
+      href: "#process",
+      icon: "process",
     },
     {
       id: "contact",
@@ -156,10 +163,10 @@ export const siteContent = {
       icon: "contact",
     },
     {
-      id: "email",
-      label: "Email",
-      href: "#email",
-      icon: "email",
+      id: "faq",
+      label: "FAQ",
+      href: "#faq",
+      icon: "faq",
     },
   ] satisfies NavItem[],
 };

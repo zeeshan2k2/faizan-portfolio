@@ -1,12 +1,16 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
 import {
+  BadgeCheck,
   FileText,
+  HelpCircle,
   Home,
   Layers,
   ListChecks,
-  Mail,
   MessageSquare,
+  Route,
   Tags,
-  UserRound,
 } from "lucide-react";
 
 import { siteContent, type NavIcon } from "@/content/site";
@@ -16,18 +20,67 @@ const iconMap = {
   home: Home,
   experience: ListChecks,
   work: Layers,
-  about: UserRound,
+  brands: BadgeCheck,
   tech: FileText,
   services: Tags,
+  process: Route,
+  faq: HelpCircle,
   contact: MessageSquare,
-  email: Mail,
 } satisfies Record<NavIcon, typeof Home>;
 
-type FloatingNavProps = {
-  activeId?: string;
-};
+export function FloatingNav() {
+  const sectionIds = useMemo(
+    () => siteContent.navigation.map((item) => item.href.slice(1)),
+    [],
+  );
+  const [activeId, setActiveId] = useState(sectionIds[0] ?? "home");
 
-export function FloatingNav({ activeId = "home" }: FloatingNavProps) {
+  useEffect(() => {
+    let frame = 0;
+
+    function updateActiveSection() {
+      const viewportAnchor = window.innerHeight * 0.46;
+      let nextActiveId = sectionIds[0] ?? "home";
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+
+        if (!section) {
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        const isInView = rect.top <= viewportAnchor && rect.bottom >= viewportAnchor;
+        const distance = Math.abs(rect.top - viewportAnchor);
+
+        if (isInView || distance < closestDistance) {
+          closestDistance = distance;
+          nextActiveId = id;
+        }
+      });
+
+      setActiveId(nextActiveId);
+    }
+
+    function scheduleUpdate() {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateActiveSection);
+    }
+
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+    };
+  }, [sectionIds]);
+
   return (
     <nav
       className="fixed right-5 top-1/2 z-30 hidden -translate-y-1/2 rounded-[400px] bg-white/10 p-1 opacity-100 shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-xl md:block xl:right-12"
@@ -36,7 +89,7 @@ export function FloatingNav({ activeId = "home" }: FloatingNavProps) {
       <ul className="flex flex-col items-center gap-2.5">
         {siteContent.navigation.map((item) => {
           const Icon = iconMap[item.icon];
-          const isActive = item.id === activeId;
+          const isActive = item.href === `#${activeId}`;
 
           return (
             <li key={item.id}>
