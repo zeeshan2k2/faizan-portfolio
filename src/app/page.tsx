@@ -2,6 +2,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { Hero } from "@/components/sections/Hero";
 import { Experience } from "@/components/sections/Experience";
 import { SelectedWork } from "@/components/sections/SelectedWork";
+import { Services } from "@/components/sections/Services";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Experience />
       <SelectedWork />
+      <Services />
     </SiteShell>
   );
 }
