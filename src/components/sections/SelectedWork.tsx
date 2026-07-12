@@ -1,8 +1,61 @@
 "use client";
 
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
-import { selectedWork } from "@/content/projects";
+import { selectedWork, type Project } from "@/content/projects";
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <article
+      className="group relative h-[420px] overflow-hidden rounded-[24px] bg-[#101010] shadow-[0_22px_72px_rgba(0,0,0,0.56)] sm:h-[500px] sm:rounded-[32px] lg:h-[540px]"
+      aria-label={project.title}
+    >
+      <Image
+        src={project.image.src}
+        alt={project.image.alt}
+        fill
+        sizes="(max-width: 768px) 100vw, 1024px"
+        className="object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.18)_52%,rgba(0,0,0,0.58)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.04)_46%,rgba(0,0,0,0.68)_100%)]" />
+
+      <div className="absolute inset-x-4 bottom-4 rounded-[22px] border border-white/8 bg-black/58 p-4 shadow-[0_18px_56px_rgba(0,0,0,0.42)] backdrop-blur-xl sm:inset-x-5 sm:bottom-5 sm:rounded-[26px] sm:p-6">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+          <div className="min-w-0">
+            <p className="font-sans text-lg font-medium tracking-[-0.02em] text-white/58 sm:text-xl">
+              {project.category}
+            </p>
+            <h3 className="mt-2 truncate font-sans text-[clamp(2rem,4.1vw,3.6rem)] font-normal leading-none tracking-[-0.035em] text-white transition-colors duration-300 group-hover:text-[var(--accent)]">
+              {project.title}
+            </h3>
+            <span className="mt-5 inline-flex rounded-full bg-white/[0.1] px-6 py-2.5 font-sans text-base font-medium leading-none text-white/86 sm:text-lg">
+              {project.date}
+            </span>
+          </div>
+
+          <a
+            href={project.href}
+            aria-label={`View ${project.title}`}
+            title={`View ${project.title}`}
+            className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-[20px] border border-white/22 bg-black/12 transition duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_34px_rgba(255,106,26,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:size-24 sm:rounded-[26px]"
+          >
+            <ArrowUpRight
+              className="absolute size-8 transform-gpu stroke-white transition-all duration-300 ease-out group-hover:translate-x-16 group-hover:-translate-y-16 group-hover:stroke-[var(--accent)] sm:size-12 sm:group-hover:translate-x-24 sm:group-hover:-translate-y-24"
+              aria-hidden="true"
+            />
+            <ArrowUpRight
+              className="absolute size-8 -translate-x-16 translate-y-16 transform-gpu stroke-white transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:stroke-[var(--accent)] sm:size-12 sm:-translate-x-24 sm:translate-y-24"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 function MarqueeTitle({ reducedMotion }: { reducedMotion: boolean }) {
   const label = (
@@ -57,6 +110,12 @@ export function SelectedWork() {
       </div>
 
       <MarqueeTitle reducedMotion={reducedMotion} />
+
+      <div className="mt-14 space-y-6 sm:mt-16 sm:space-y-8 lg:mt-20">
+        {selectedWork.projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
     </section>
   );
 }
