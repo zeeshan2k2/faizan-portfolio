@@ -18,7 +18,7 @@ export const selectedWork = {
       category: "Creative Service",
       title: "Videography",
       date: "View Work",
-      href: "#",
+      href: "#work",
       image: {
         src: "/images/work-card.png",
         alt: "Preview image for videography work",
@@ -29,7 +29,7 @@ export const selectedWork = {
       category: "Creative Service",
       title: "Editing",
       date: "View Work",
-      href: "#",
+      href: "#work",
       image: {
         src: "/images/work-card.png",
         alt: "Preview image for editing work",

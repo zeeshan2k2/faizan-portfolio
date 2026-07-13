@@ -26,7 +26,7 @@ export function Faq() {
   return (
     <section
       id="faq"
-      className="relative mx-auto w-full max-w-5xl px-[30px] py-9 sm:px-12 sm:py-14 lg:py-16"
+      className="relative mx-auto w-full max-w-[920px] px-[30px] py-9 sm:px-10 sm:py-12 lg:py-14"
       aria-labelledby="faq-heading"
     >
       <div
@@ -44,12 +44,12 @@ export function Faq() {
 
       <h2
         id="faq-heading"
-        className="text-center font-sans text-[clamp(4rem,9vw,7.25rem)] font-normal leading-none tracking-[-0.055em] text-white"
+        className="text-center font-sans text-[clamp(3.5rem,7.5vw,6rem)] font-normal leading-none tracking-[-0.055em] text-white"
       >
         {faqContent.title}
       </h2>
 
-      <div className="mt-16 sm:mt-24">
+      <div className="mt-12 sm:mt-16">
         {faqContent.items.map((item) => {
           const isOpen = openItems.has(item.id);
 
@@ -60,10 +60,10 @@ export function Faq() {
                 aria-expanded={isOpen}
                 aria-controls={`${item.id}-answer`}
                 onClick={() => toggleItem(item.id)}
-                className="group flex w-full items-start justify-between gap-6 py-8 text-left outline-none sm:gap-10 sm:py-10"
+                className="group flex w-full items-start justify-between gap-6 py-6 text-left outline-none sm:gap-10 sm:py-8"
               >
                 <span className="min-w-0">
-                  <span className="block font-sans text-[clamp(1.85rem,3vw,3rem)] font-normal leading-tight tracking-[-0.025em] text-white transition-colors duration-300 group-hover:text-white">
+                  <span className="block font-sans text-[clamp(1.65rem,2.5vw,2.5rem)] font-normal leading-tight tracking-[-0.025em] text-white transition-colors duration-300 group-hover:text-white">
                     {item.question}
                   </span>
 
@@ -77,7 +77,7 @@ export function Faq() {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className="block overflow-hidden"
                       >
-                        <span className="block max-w-2xl pt-7 font-sans text-[clamp(1.15rem,1.75vw,1.65rem)] font-medium leading-[1.35] tracking-[-0.025em] text-white/40">
+                        <span className="block max-w-2xl pt-6 font-sans text-[clamp(1.05rem,1.4vw,1.35rem)] font-medium leading-[1.35] tracking-[-0.025em] text-white/40">
                           {item.answer}
                         </span>
                       </motion.span>
@@ -85,11 +85,11 @@ export function Faq() {
                   </AnimatePresence>
                 </span>
 
-                <span className="mt-1 grid size-14 shrink-0 place-items-center rounded-full border border-white/10 bg-black/20 text-white transition-colors duration-300 group-hover:border-[var(--accent)] group-hover:text-[var(--accent)] sm:size-16">
+                <span className="mt-1 grid size-12 shrink-0 place-items-center rounded-full border border-white/10 bg-black/20 text-white transition-colors duration-300 group-hover:border-[var(--accent)] group-hover:text-[var(--accent)] sm:size-14">
                   {isOpen ? (
-                    <Minus className="size-7 stroke-[2.4]" aria-hidden="true" />
+                    <Minus className="size-6 stroke-[2.4]" aria-hidden="true" />
                   ) : (
-                    <Plus className="size-7 stroke-[2.4]" aria-hidden="true" />
+                    <Plus className="size-6 stroke-[2.4]" aria-hidden="true" />
                   )}
                 </span>
               </button>
@@ -98,7 +98,7 @@ export function Faq() {
         })}
       </div>
 
-      <div className="mx-auto mt-14 text-center font-sans text-[clamp(1.1rem,1.6vw,1.45rem)] font-medium leading-tight tracking-[-0.025em] text-white/56 sm:mt-16">
+      <div className="mx-auto mt-10 text-center font-sans text-[clamp(1rem,1.4vw,1.25rem)] font-medium leading-tight tracking-[-0.025em] text-white/56 sm:mt-12">
         <p>{faqContent.footerQuestion}</p>
         <a
           href={faqContent.footerHref}

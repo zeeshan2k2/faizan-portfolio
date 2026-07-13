@@ -11,7 +11,7 @@
   --accent: #ff6a1a;
   --accent-soft: rgba(255, 106, 26, 0.18);
   --orange-glow: rgba(255, 83, 17, 0.45);
-  --shell-max: 1412px;
+  --shell-max: 1280px;
 }
 
 * {
@@ -97,7 +97,7 @@ select {
   width: min(100%, var(--shell-max));
   min-height: 100vh;
   margin: 0 auto;
-  padding: clamp(24px, 3vw, 48px);
+  padding: clamp(20px, 2.4vw, 36px);
 }
 
 @media (max-width: 768px) {

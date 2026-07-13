@@ -41,7 +41,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[calc(100svh-96px)] items-start justify-center px-0 pb-14 pt-9 sm:min-h-[calc(100svh-128px)] sm:pb-16 sm:pt-14 lg:pt-16"
+      className="relative flex min-h-[calc(100svh-80px)] items-start justify-center px-0 pb-12 pt-8 sm:min-h-[calc(100svh-112px)] sm:pb-14 sm:pt-12 lg:pt-14"
       aria-label="Hero"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
@@ -50,7 +50,7 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="mx-auto flex w-full max-w-4xl flex-col items-center text-center"
+        className="mx-auto flex w-full max-w-[860px] flex-col items-center text-center"
         initial="hidden"
         animate="visible"
         transition={{ staggerChildren: shouldReduceMotion ? 0 : 0.11 }}
@@ -58,15 +58,15 @@ export function Hero() {
         <motion.div
           variants={fadeUp}
           transition={transition}
-          className="relative w-[min(84vw,520px)] sm:w-[min(64vw,540px)] lg:w-[min(54vw,560px)]"
+          className="relative w-[min(84vw,480px)] sm:w-[min(60vw,500px)] lg:w-[min(48vw,500px)]"
         >
-          <div className="relative h-[clamp(300px,42svh,360px)] overflow-hidden rounded-[24px] bg-[#100a08] shadow-[0_28px_96px_rgba(0,0,0,0.58)] sm:h-[clamp(390px,56svh,560px)] sm:rounded-[30px] lg:h-[clamp(410px,58svh,600px)]">
+          <div className="relative h-[clamp(280px,38svh,340px)] overflow-hidden rounded-[22px] bg-[#100a08] shadow-[0_28px_96px_rgba(0,0,0,0.58)] sm:h-[clamp(350px,50svh,500px)] sm:rounded-[28px] lg:h-[clamp(370px,52svh,520px)]">
             <NextImage
               src={hero.media.src}
               alt={hero.media.alt}
               fill
               priority
-              sizes="(max-width: 640px) 84vw, (max-width: 1024px) 64vw, 560px"
+              sizes="(max-width: 640px) 84vw, (max-width: 1024px) 60vw, 500px"
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.34)_0%,rgba(0,0,0,0.04)_42%,rgba(0,0,0,0.26)_100%)]" />
@@ -77,7 +77,7 @@ export function Hero() {
             variants={fadeFromLeft}
             transition={transition}
             className={cn(
-              "signature-font pointer-events-none absolute inset-x-0 bottom-0 mx-auto translate-y-1/2 text-center text-[clamp(4.3rem,17vw,9.2rem)] font-normal leading-none text-white drop-shadow-[0_18px_34px_rgba(0,0,0,0.62)]",
+              "signature-font pointer-events-none absolute inset-x-0 bottom-0 mx-auto translate-y-1/2 text-center text-[clamp(4rem,15vw,8rem)] font-normal leading-none text-white drop-shadow-[0_18px_34px_rgba(0,0,0,0.62)]",
             )}
           >
             {hero.signatureName}
@@ -87,9 +87,9 @@ export function Hero() {
         <motion.div
           variants={fadeFromRight}
           transition={transition}
-          className="mt-20 max-w-2xl sm:mt-24"
+          className="mt-[4.5rem] max-w-2xl sm:mt-20"
         >
-          <p className="font-sans text-balance text-2xl font-normal leading-snug tracking-[0.01em] text-white/58 sm:text-3xl lg:text-[2.25rem]">
+          <p className="font-sans text-balance text-2xl font-normal leading-snug tracking-[0.01em] text-white/58 sm:text-[1.7rem] lg:text-[2rem]">
             {hero.introPrefix}{" "}
             <span className="text-white">{hero.introName}</span>,
             <br />
@@ -126,19 +126,19 @@ export function Hero() {
         <motion.div
           variants={fadeUp}
           transition={transition}
-          className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:w-auto sm:flex-row"
+          className="mt-9 flex w-full flex-col items-center justify-center gap-4 sm:mt-10 sm:w-auto sm:flex-row"
         >
           <Button
             href={hero.ctas.primary.href}
             showArrow
-            className="w-full max-w-[260px] justify-between sm:w-auto sm:min-w-[260px]"
+            className="w-full max-w-[240px] justify-between sm:w-auto sm:min-w-[240px]"
           >
             {hero.ctas.primary.label}
           </Button>
           <Button
             href={hero.ctas.secondary.href}
             variant="secondary"
-            className="w-full max-w-[280px] sm:w-auto sm:min-w-[280px]"
+            className="w-full max-w-[250px] sm:w-auto sm:min-w-[250px]"
           >
             {hero.ctas.secondary.label}
           </Button>

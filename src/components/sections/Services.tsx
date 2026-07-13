@@ -40,7 +40,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative mx-auto w-full max-w-5xl px-[30px] py-9 sm:px-12 sm:py-14 lg:py-16"
+      className="relative mx-auto w-full max-w-[920px] px-[30px] py-9 sm:px-10 sm:py-12 lg:py-14"
       aria-labelledby="services-heading"
     >
       <div
@@ -56,7 +56,7 @@ export function Services() {
         <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
       </div>
 
-      <div className="rounded-[28px] bg-[#151515]/88 px-7 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_26px_80px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.035] sm:rounded-[36px] sm:px-14 sm:py-14 lg:px-20 lg:py-20">
+      <div className="rounded-[24px] bg-[#151515]/88 px-7 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_26px_80px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.035] sm:rounded-[30px] sm:px-10 sm:py-11 lg:px-14 lg:py-14">
         <div className="flex items-center gap-3 text-base font-medium tracking-[-0.01em] text-white/82 sm:text-xl">
           <span className="size-1.5 rounded-full bg-white" aria-hidden="true" />
           <span>{servicesContent.eyebrow}</span>
@@ -64,7 +64,7 @@ export function Services() {
 
         <div
           id="services-heading"
-          className="mt-20 space-y-9 sm:mt-28 sm:space-y-12 lg:mt-32 lg:space-y-14"
+          className="mt-14 space-y-7 sm:mt-[4.5rem] sm:space-y-9 lg:mt-20 lg:space-y-10"
         >
           {servicesContent.services.map((service) => {
             const isOpen = openServices.has(service.id);
@@ -83,17 +83,17 @@ export function Services() {
                     aria-hidden="true"
                     initial={false}
                     animate={{
-                      width: isOpen ? 64 : 0,
-                      marginRight: isOpen ? 28 : 0,
+                      width: isOpen ? 56 : 0,
+                      marginRight: isOpen ? 24 : 0,
                       opacity: isOpen ? 1 : 0,
                     }}
                     transition={{ duration: 0.34, ease: "easeOut" }}
-                    className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-[14px] bg-[linear-gradient(135deg,#8c2608_0%,var(--accent)_72%)] text-white shadow-[0_16px_40px_rgba(255,106,26,0.18)]"
+                    className="grid size-14 shrink-0 place-items-center overflow-hidden rounded-[13px] bg-[linear-gradient(135deg,#8c2608_0%,var(--accent)_72%)] text-white shadow-[0_16px_40px_rgba(255,106,26,0.18)]"
                   >
-                    <Icon className="size-7" aria-hidden="true" />
+                    <Icon className="size-6" aria-hidden="true" />
                   </motion.span>
 
-                  <span className="min-w-0 truncate font-sans text-[clamp(3.25rem,8vw,7.4rem)] font-normal leading-[0.86] tracking-[-0.055em] text-white/30 transition-colors duration-300 group-hover:text-white/72">
+                  <span className="min-w-0 truncate font-sans text-[clamp(3rem,7vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-white/30 transition-colors duration-300 group-hover:text-white/72">
                     {service.label}
                     <span className="relative -top-[2.92em] ml-3 inline-block text-[0.18em] font-medium leading-none tracking-[-0.03em] text-white/30 transition-colors duration-300 group-hover:text-[var(--accent)]">
                       [{service.index}]
@@ -109,7 +109,7 @@ export function Services() {
                       animate={{ height: "auto", opacity: 1, y: 0 }}
                       exit={{ height: 0, opacity: 0, y: -8 }}
                       transition={{ duration: 0.32, ease: "easeOut" }}
-                      className="ml-0 mt-7 overflow-hidden space-y-5 text-base font-medium leading-none tracking-[-0.02em] text-white/62 sm:ml-[92px] sm:text-xl"
+                      className="ml-0 mt-6 overflow-hidden space-y-4 text-base font-medium leading-none tracking-[-0.02em] text-white/62 sm:ml-20 sm:text-lg"
                     >
                       {service.points.map((point) => (
                         <li key={point} className="flex items-center gap-4">
@@ -125,7 +125,7 @@ export function Services() {
           })}
         </div>
 
-        <div className="mt-24 flex flex-col gap-7 text-xl font-medium tracking-[-0.03em] text-white/55 sm:mt-32 sm:flex-row sm:items-center sm:justify-between sm:text-2xl">
+        <div className="mt-16 flex flex-col gap-6 text-base font-medium tracking-[-0.03em] text-white/55 sm:mt-20 sm:flex-row sm:items-center sm:justify-between sm:text-lg">
           <div className="flex items-center gap-4">
             <Globe2 className="size-7 text-white/72" aria-hidden="true" />
             <span>{servicesContent.availability}</span>

@@ -9,7 +9,7 @@ function FramerIcon() {
   return (
     <svg
       aria-label="Framer icon"
-      className="size-24 sm:size-28"
+      className="size-20 sm:size-24"
       viewBox="0 0 120 120"
       role="img"
     >
@@ -22,25 +22,25 @@ function FramerIcon() {
 
 function TechCard({ item }: { item: TechItem }) {
   return (
-    <article className="flex h-[410px] w-[calc((100%_-_2rem)/2)] min-w-[calc((100%_-_2rem)/2)] shrink-0 flex-col items-center justify-between rounded-[28px] bg-[#151515]/90 px-8 py-14 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] sm:h-[470px] sm:rounded-[34px] sm:px-12">
-      <h3 className="font-sans text-[clamp(2.75rem,5vw,4.5rem)] font-normal leading-none tracking-[-0.045em] text-white">
+    <article className="flex h-[350px] w-[calc((100%_-_2rem)/2)] min-w-[calc((100%_-_2rem)/2)] shrink-0 flex-col items-center justify-between rounded-[24px] bg-[#151515]/90 px-7 py-11 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] sm:h-[400px] sm:rounded-[30px] sm:px-10">
+      <h3 className="font-sans text-[clamp(2.35rem,4vw,3.75rem)] font-normal leading-none tracking-[-0.045em] text-white">
         {item.name}
       </h3>
 
-      <div className="grid size-40 place-items-center rounded-[18px] bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:size-48 sm:rounded-[22px]">
+      <div className="grid size-32 place-items-center rounded-[16px] bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:size-40 sm:rounded-[20px]">
         {item.id === "framer" ? (
           <FramerIcon />
         ) : (
           <img
             src={item.iconUrl}
             alt={`${item.name} icon`}
-            className="size-24 object-contain sm:size-28"
+            className="size-20 object-contain sm:size-24"
             loading="lazy"
           />
         )}
       </div>
 
-      <p className="font-sans text-[clamp(1.15rem,2vw,1.7rem)] font-normal leading-tight tracking-[-0.035em] text-white/88">
+      <p className="font-sans text-[clamp(1.05rem,1.6vw,1.35rem)] font-normal leading-tight tracking-[-0.035em] text-white/88">
         {item.description}
       </p>
     </article>
@@ -79,7 +79,7 @@ export function TechStack() {
   return (
     <section
       id="tech-stack"
-      className="relative mx-auto w-full max-w-5xl px-[30px] py-9 sm:px-12 sm:py-14 lg:py-16"
+      className="relative mx-auto w-full max-w-[920px] px-[30px] py-9 sm:px-10 sm:py-12 lg:py-14"
       aria-labelledby="tech-stack-heading"
     >
       <div
@@ -97,7 +97,7 @@ export function TechStack() {
 
       <motion.h2
         id="tech-stack-heading"
-        className="text-center font-sans text-[clamp(4rem,9vw,7.25rem)] font-normal leading-none tracking-[-0.06em] text-white"
+        className="text-center font-sans text-[clamp(3.5rem,7.5vw,6rem)] font-normal leading-none tracking-[-0.06em] text-white"
         initial={reducedMotion ? false : { opacity: 0, x: 72 }}
         whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
         viewport={{ once: true, amount: 0.55 }}
@@ -106,7 +106,7 @@ export function TechStack() {
         {techStackContent.title}
       </motion.h2>
 
-      <div className="mt-20 overflow-hidden sm:mt-28">
+      <div className="mt-14 overflow-hidden sm:mt-20">
         <motion.div
           className="flex gap-8"
           animate={

@@ -66,7 +66,7 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative mx-auto w-full max-w-5xl px-[30px] py-9 sm:px-12 sm:py-14 lg:py-16"
+      className="relative mx-auto w-full max-w-[920px] px-[30px] py-9 sm:px-10 sm:py-12 lg:py-14"
       aria-labelledby="experience-heading"
     >
       <div
@@ -90,7 +90,7 @@ export function Experience() {
 
         <h2
           id="experience-heading"
-          className="w-full max-w-none font-sans text-[clamp(1.85rem,3.25vw,3.25rem)] font-normal leading-[1.12] tracking-[-0.01em]"
+          className="w-full max-w-none font-sans text-[clamp(1.75rem,2.85vw,2.85rem)] font-normal leading-[1.12] tracking-[-0.01em]"
         >
           {headlineCharacters.map((char, index) => {
             const characterIndex = char === " " ? visibleIndex : visibleIndex++;
@@ -110,7 +110,7 @@ export function Experience() {
         <div className="clear-both" />
       </div>
 
-      <div className="mt-10 space-y-0 sm:mt-14">
+      <div className="mt-9 space-y-0 sm:mt-12">
         {experience.roles.map((role) => (
           <a
             key={role.title}
@@ -120,8 +120,8 @@ export function Experience() {
             aria-label={`${role.title}, ${role.date}. ${experience.hoverLabel}`}
             className="group block"
           >
-            <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-7">
-              <h3 className="font-sans text-[clamp(1.45rem,2.05vw,2rem)] font-normal leading-none tracking-[-0.005em] text-white transition duration-300 group-hover:text-white">
+            <div className="flex flex-col gap-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-6">
+              <h3 className="font-sans text-[clamp(1.35rem,1.85vw,1.8rem)] font-normal leading-none tracking-[-0.005em] text-white transition duration-300 group-hover:text-white">
                 {role.title}
               </h3>
 

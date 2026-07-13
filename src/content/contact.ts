@@ -14,13 +14,5 @@ export const contactContent = {
       label: "Message",
     },
   },
-  budgetLabel: "Select your Budget",
-  budgets: [
-    "< $1,000",
-    "$1,000 - $5,000",
-    "$5,000 - $10,000",
-    "$10,000 - $20,000",
-    "> $20,000",
-  ],
   submitLabel: "Send Request",
 };
