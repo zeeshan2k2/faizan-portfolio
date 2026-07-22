@@ -1,10 +1,50 @@
-﻿"use client";
+"use client";
 
+import { type FormEvent, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 
 import { contactContent } from "@/content/contact";
 
 export function Contact() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setStatus("error");
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    formData.append("access_key", accessKey);
+    formData.append("subject", contactContent.emailSubject);
+    formData.append("from_name", contactContent.emailFromName);
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const result = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || !result.success) {
+        throw new Error("Web3Forms submission failed");
+      }
+
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -39,8 +79,16 @@ export function Contact() {
 
         <form
           className="mt-12 max-w-4xl"
-          onSubmit={(event) => event.preventDefault()}
+          onSubmit={handleSubmit}
         >
+          <input
+            type="checkbox"
+            name="botcheck"
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+
           <div className="space-y-8 sm:space-y-10">
             <label className="block">
               <span className="block font-sans text-[clamp(1.15rem,1.7vw,1.55rem)] font-medium leading-none tracking-[-0.025em] text-white/92">
@@ -50,6 +98,7 @@ export function Contact() {
                 type="email"
                 name="email"
                 placeholder={contactContent.fields.email.placeholder}
+                required
                 className="mt-5 w-full border-0 border-b border-white/12 bg-transparent pb-3 font-sans text-lg font-medium tracking-[-0.02em] text-white outline-none transition-colors placeholder:text-white/24 focus:border-[var(--accent)] sm:text-xl"
               />
             </label>
@@ -62,6 +111,7 @@ export function Contact() {
                 type="tel"
                 name="phone"
                 placeholder={contactContent.fields.phone.placeholder}
+                required
                 className="mt-5 w-full border-0 border-b border-white/12 bg-transparent pb-3 font-sans text-lg font-medium tracking-[-0.02em] text-white outline-none transition-colors placeholder:text-white/24 focus:border-[var(--accent)] sm:text-xl"
               />
             </label>
@@ -73,17 +123,34 @@ export function Contact() {
               <textarea
                 name="message"
                 rows={4}
+                required
                 className="mt-5 min-h-28 w-full resize-y border-0 border-b border-white/12 bg-transparent pb-3 font-sans text-lg font-medium tracking-[-0.02em] text-white outline-none transition-colors placeholder:text-white/24 focus:border-[var(--accent)] sm:text-xl"
               />
             </label>
           </div>
 
+          {status !== "idle" ? (
+            <p
+              className={`mt-8 font-sans text-base font-medium tracking-[-0.02em] sm:text-lg ${
+                status === "success" ? "text-[var(--accent)]" : "text-white/58"
+              }`}
+              role="status"
+            >
+              {status === "loading"
+                ? contactContent.status.loading
+                : status === "success"
+                  ? contactContent.status.success
+                  : contactContent.status.error}
+            </p>
+          ) : null}
+
           <button
             type="submit"
-            className="group mt-16 inline-flex h-14 w-full max-w-sm items-center justify-between rounded-full bg-white py-1 pl-8 pr-1 font-sans text-black transition duration-300 hover:shadow-[0_0_44px_rgba(255,255,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:h-16 sm:max-w-md"
+            disabled={status === "loading"}
+            className="group mt-16 inline-flex h-14 w-full max-w-sm items-center justify-between rounded-full bg-white py-1 pl-8 pr-1 font-sans text-black transition duration-300 hover:shadow-[0_0_44px_rgba(255,255,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-60 sm:h-16 sm:max-w-md"
           >
             <span className="text-[1.3rem] font-normal leading-none tracking-[-0.025em] transition-colors duration-300 group-hover:text-[var(--accent)] sm:text-[1.55rem]">
-              {contactContent.submitLabel}
+              {status === "loading" ? contactContent.submittingLabel : contactContent.submitLabel}
             </span>
             <span className="relative grid size-12 place-items-center overflow-hidden rounded-full bg-black text-white transition-colors duration-300 group-hover:text-[var(--accent)] sm:size-14">
               <ArrowUpRight
