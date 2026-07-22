@@ -9,7 +9,7 @@ function BrandLogo({ item }: { item: BrandItem }) {
   return (
     <div
       className={cn(
-        "flex h-32 min-w-[170px] items-center justify-center px-4 sm:h-40 sm:min-w-[210px] sm:px-5",
+        "flex h-36 min-w-[180px] items-center justify-center px-4 sm:h-44 sm:min-w-[220px] sm:px-5",
         item.wrapperClassName,
       )}
     >
@@ -17,7 +17,7 @@ function BrandLogo({ item }: { item: BrandItem }) {
         src={item.logo}
         alt={`${item.name} logo`}
         className={cn(
-          "max-h-16 max-w-[150px] object-contain opacity-90 transition duration-300 [filter:brightness(0)_invert(1)] hover:opacity-100 sm:max-h-20 sm:max-w-[190px]",
+          "max-h-20 max-w-[170px] object-contain opacity-90 transition duration-300 [filter:brightness(0)_invert(1)] hover:opacity-100 sm:max-h-24 sm:max-w-[210px]",
           item.logoClassName,
         )}
         loading="lazy"
