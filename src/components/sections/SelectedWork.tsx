@@ -1,8 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { selectedWork } from "@/content/projects";
@@ -10,6 +10,7 @@ import {
   workCategories,
   type WorkCategory,
   type WorkGroup,
+  type WorkMediaItem,
 } from "@/content/work";
 
 const layoutMap = {
@@ -69,7 +70,138 @@ function WorkGroupBlock({ group }: { group: WorkGroup }) {
   );
 }
 
-function WorkCategoryDetails({ category }: { category: WorkCategory }) {
+function WorkVideoCard({
+  item,
+  onOpen,
+}: {
+  item: WorkMediaItem;
+  onOpen: (item: WorkMediaItem) => void;
+}) {
+  const cardShape =
+    item.orientation === "portrait"
+      ? "aspect-[9/16] sm:col-span-1"
+      : "aspect-video sm:col-span-2";
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(item)}
+      className={`group relative w-full overflow-hidden rounded-[20px] bg-[#090909] shadow-[0_18px_56px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.045] transition duration-300 hover:-translate-y-1 hover:ring-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:rounded-[24px] ${cardShape}`}
+      aria-label={`Play ${item.title}`}
+      title={`Play ${item.title}`}
+    >
+      <video
+        className="h-full w-full object-cover"
+        src={item.previewSrc}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="metadata"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/12"
+      />
+    </button>
+  );
+}
+
+function WorkVideoGrid({
+  items,
+  onVideoOpen,
+}: {
+  items: WorkMediaItem[];
+  onVideoOpen: (item: WorkMediaItem) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+      {items.map((item) => (
+        <WorkVideoCard key={item.id} item={item} onOpen={onVideoOpen} />
+      ))}
+    </div>
+  );
+}
+
+function WorkVideoModal({
+  video,
+  onClose,
+}: {
+  video: WorkMediaItem | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!video) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose, video]);
+
+  return (
+    <AnimatePresence>
+      {video ? (
+        <motion.div
+          className="fixed inset-0 z-50 grid place-items-center bg-black/82 px-4 py-6 backdrop-blur-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={video.title}
+          onClick={onClose}
+        >
+          <motion.div
+            className="relative w-full max-w-5xl overflow-hidden rounded-[24px] bg-[#080808] shadow-[0_26px_90px_rgba(0,0,0,0.72)] ring-1 ring-white/10"
+            initial={{ y: 18, scale: 0.98 }}
+            animate={{ y: 0, scale: 1 }}
+            exit={{ y: 18, scale: 0.98 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full bg-black/70 text-white ring-1 ring-white/14 backdrop-blur transition hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+              aria-label="Close video"
+              title="Close video"
+            >
+              <X className="size-5" aria-hidden="true" />
+            </button>
+            <video
+              className="max-h-[82vh] w-full bg-black object-contain"
+              src={video.fullSrc}
+              controls
+              autoPlay
+              playsInline
+              preload="none"
+            />
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
+function WorkCategoryDetails({
+  category,
+  onVideoOpen,
+}: {
+  category: WorkCategory;
+  onVideoOpen: (item: WorkMediaItem) => void;
+}) {
   return (
     <motion.div
       initial={{ height: 0, opacity: 0, y: -16 }}
@@ -79,11 +211,15 @@ function WorkCategoryDetails({ category }: { category: WorkCategory }) {
       className="overflow-hidden"
     >
       <div className="rounded-[22px] bg-[#101010]/76 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_18px_60px_rgba(0,0,0,0.38)] ring-1 ring-white/[0.035] sm:rounded-[28px] sm:p-7">
-        <div className="space-y-12 sm:space-y-16">
-          {category.groups.map((group) => (
-            <WorkGroupBlock key={group.id} group={group} />
-          ))}
-        </div>
+        {category.media ? (
+          <WorkVideoGrid items={category.media} onVideoOpen={onVideoOpen} />
+        ) : (
+          <div className="space-y-12 sm:space-y-16">
+            {category.groups.map((group) => (
+              <WorkGroupBlock key={group.id} group={group} />
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -189,6 +325,7 @@ export function SelectedWork() {
   const [openCategoryId, setOpenCategoryId] = useState<WorkCategory["id"] | null>(
     null,
   );
+  const [selectedVideo, setSelectedVideo] = useState<WorkMediaItem | null>(null);
   const categoryRefs = useRef<Map<WorkCategory["id"], HTMLDivElement>>(
     new Map(),
   );
@@ -262,58 +399,67 @@ export function SelectedWork() {
   }
 
   return (
-    <section
-      id="work"
-      className="relative mx-auto w-full max-w-[920px] px-[30px] py-9 sm:px-10 sm:py-12 lg:py-14"
-      aria-label={selectedWork.marqueeLabel}
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 bg-[var(--line)]"
+    <>
+      <section
+        id="work"
+        className="relative mx-auto w-full max-w-[920px] px-[30px] py-9 sm:px-10 sm:py-12 lg:py-14"
+        aria-label={selectedWork.marqueeLabel}
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 bg-[var(--line)]"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-1/2 h-px w-screen -translate-x-1/2 bg-[var(--line)]"
+        />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
+          <div className="absolute bottom-0 left-[calc(50%-520px)] size-2 bg-white/55" />
+          <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
+        </div>
+
+        <MarqueeTitle reducedMotion={reducedMotion} />
+
+        <div className="mt-12 space-y-6 sm:mt-14 sm:space-y-7 lg:mt-16">
+          {workCategories.map((category) => {
+            const isOpen = openCategoryId === category.id;
+
+            return (
+              <div
+                key={category.id}
+                ref={(node) => {
+                  if (node) {
+                    categoryRefs.current.set(category.id, node);
+                  } else {
+                    categoryRefs.current.delete(category.id);
+                  }
+                }}
+                className="space-y-6 sm:space-y-8"
+              >
+                <WorkCategoryCard
+                  category={category}
+                  isOpen={isOpen}
+                  onToggle={() => toggleCategory(category.id)}
+                />
+                <AnimatePresence initial={false}>
+                  {isOpen ? (
+                    <div id={`${category.id}-details`}>
+                      <WorkCategoryDetails
+                        category={category}
+                        onVideoOpen={setSelectedVideo}
+                      />
+                    </div>
+                  ) : null}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      <WorkVideoModal
+        video={selectedVideo}
+        onClose={() => setSelectedVideo(null)}
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-1/2 h-px w-screen -translate-x-1/2 bg-[var(--line)]"
-      />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
-        <div className="absolute bottom-0 left-[calc(50%-520px)] size-2 bg-white/55" />
-        <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
-      </div>
-
-      <MarqueeTitle reducedMotion={reducedMotion} />
-
-      <div className="mt-12 space-y-6 sm:mt-14 sm:space-y-7 lg:mt-16">
-        {workCategories.map((category) => {
-          const isOpen = openCategoryId === category.id;
-
-          return (
-            <div
-              key={category.id}
-              ref={(node) => {
-                if (node) {
-                  categoryRefs.current.set(category.id, node);
-                } else {
-                  categoryRefs.current.delete(category.id);
-                }
-              }}
-              className="space-y-6 sm:space-y-8"
-            >
-              <WorkCategoryCard
-                category={category}
-                isOpen={isOpen}
-                onToggle={() => toggleCategory(category.id)}
-              />
-              <AnimatePresence initial={false}>
-                {isOpen ? (
-                  <div id={`${category.id}-details`}>
-                    <WorkCategoryDetails category={category} />
-                  </div>
-                ) : null}
-              </AnimatePresence>
-            </div>
-          );
-        })}
-      </div>
-    </section>
+    </>
   );
 }
