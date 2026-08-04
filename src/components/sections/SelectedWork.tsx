@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { ArrowUpRight, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
@@ -41,6 +40,36 @@ const layoutMap = {
   ],
   "wide-stack": ["col-span-3 row-span-1", "col-span-3 row-span-1"],
 } satisfies Record<WorkGroup["layout"], string[]>;
+
+const categoryGradientMap = {
+  videography: {
+    glow:
+      "bg-[radial-gradient(circle_at_38%_20%,rgba(176,92,35,0.1)_0%,rgba(104,58,30,0.06)_30%,rgba(12,12,12,0)_66%)]",
+    wash:
+      "bg-[#151515]/90",
+    depth:
+      "bg-[linear-gradient(180deg,rgba(255,255,255,0.035)_0%,rgba(0,0,0,0)_38%,rgba(0,0,0,0.28)_100%)]",
+  },
+  editing: {
+    glow:
+      "bg-[radial-gradient(circle_at_38%_20%,rgba(176,92,35,0.1)_0%,rgba(104,58,30,0.06)_30%,rgba(12,12,12,0)_66%)]",
+    wash:
+      "bg-[#151515]/90",
+    depth:
+      "bg-[linear-gradient(180deg,rgba(255,255,255,0.035)_0%,rgba(0,0,0,0)_38%,rgba(0,0,0,0.28)_100%)]",
+  },
+  "short-films": {
+    glow:
+      "bg-[radial-gradient(circle_at_38%_20%,rgba(176,92,35,0.1)_0%,rgba(104,58,30,0.06)_30%,rgba(12,12,12,0)_66%)]",
+    wash:
+      "bg-[#151515]/90",
+    depth:
+      "bg-[linear-gradient(180deg,rgba(255,255,255,0.035)_0%,rgba(0,0,0,0)_38%,rgba(0,0,0,0.28)_100%)]",
+  },
+} satisfies Record<
+  WorkCategory["id"],
+  { glow: string; wash: string; depth: string }
+>;
 
 function WorkPlaceholderGrid({ group }: { group: WorkGroup }) {
   return (
@@ -234,23 +263,18 @@ function WorkCategoryCard({
   isOpen: boolean;
   onToggle: () => void;
 }) {
+  const gradient = categoryGradientMap[category.id];
+
   return (
     <article
-      className="group relative h-[360px] overflow-hidden rounded-[24px] bg-[#101010] shadow-[0_22px_72px_rgba(0,0,0,0.56)] sm:h-[420px] sm:rounded-[30px] lg:h-[460px]"
+      className="group relative min-h-[220px] overflow-hidden rounded-[24px] bg-[#151515]/90 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] sm:min-h-[235px] sm:rounded-[30px] sm:p-7"
       aria-label={category.title}
     >
-      <Image
-        src={category.image.src}
-        alt={category.image.alt}
-        fill
-        sizes="(max-width: 768px) 100vw, 1024px"
-        className="object-cover object-center"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.18)_52%,rgba(0,0,0,0.58)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.04)_46%,rgba(0,0,0,0.68)_100%)]" />
+      <div className={`absolute inset-0 ${gradient.wash}`} />
+      <div className={`absolute inset-0 ${gradient.glow}`} />
+      <div className={`absolute inset-0 ${gradient.depth}`} />
 
-      <div className="absolute inset-x-4 bottom-4 rounded-[22px] border border-white/8 bg-black/58 p-4 shadow-[0_18px_56px_rgba(0,0,0,0.42)] backdrop-blur-xl sm:inset-x-5 sm:bottom-5 sm:rounded-[26px] sm:p-6">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+      <div className="relative z-10 flex min-h-[180px] flex-col justify-between gap-8 sm:min-h-[180px] sm:flex-row sm:items-center sm:gap-8">
           <div className="min-w-0">
             <p className="font-sans text-lg font-medium tracking-[-0.02em] text-white/58 sm:text-xl">
               {category.label}
@@ -284,7 +308,6 @@ function WorkCategoryCard({
               aria-hidden="true"
             />
           </button>
-        </div>
       </div>
     </article>
   );
