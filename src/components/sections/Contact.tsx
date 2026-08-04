@@ -2,11 +2,13 @@
 
 import { type FormEvent, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { contactContent } from "@/content/contact";
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const reducedMotion = Boolean(useReducedMotion());
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -65,6 +67,12 @@ export function Contact() {
       </div>
 
       <div className="rounded-[26px] bg-[#151515]/90 px-7 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_26px_80px_rgba(0,0,0,0.48)] ring-1 ring-white/[0.045] sm:rounded-[30px] sm:px-12 sm:py-12 lg:px-14 lg:py-16">
+        <motion.div
+          initial={reducedMotion ? false : { opacity: 0, x: -28 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.62, ease: "easeOut" }}
+        >
         <div className="flex items-center gap-3 text-base font-medium tracking-[-0.01em] text-white/82 sm:text-lg">
           <span className="size-1.5 rounded-full bg-white" aria-hidden="true" />
           <span>{contactContent.eyebrow}</span>
@@ -164,6 +172,7 @@ export function Contact() {
             </span>
           </button>
         </form>
+        </motion.div>
       </div>
     </section>
   );

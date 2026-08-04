@@ -9,7 +9,7 @@ import {
   Pen,
   Wand2,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { servicesContent, type Service } from "@/content/services";
 
@@ -22,6 +22,7 @@ const serviceIconMap = {
 
 export function Services() {
   const [openServices, setOpenServices] = useState<Set<string>>(new Set());
+  const reducedMotion = Boolean(useReducedMotion());
 
   function toggleService(id: string) {
     setOpenServices((current) => {
@@ -57,6 +58,12 @@ export function Services() {
       </div>
 
       <div className="rounded-[24px] bg-[#151515]/88 px-7 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_26px_80px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.035] sm:rounded-[30px] sm:px-10 sm:py-11 lg:px-14 lg:py-14">
+        <motion.div
+          initial={reducedMotion ? false : { opacity: 0, x: -28 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.62, ease: "easeOut" }}
+        >
         <div className="flex items-center gap-3 text-base font-medium tracking-[-0.01em] text-white/82 sm:text-xl">
           <span className="size-1.5 rounded-full bg-white" aria-hidden="true" />
           <span>{servicesContent.eyebrow}</span>
@@ -150,6 +157,7 @@ export function Services() {
             </span>
           </a>
         </div>
+        </motion.div>
       </div>
     </section>
   );

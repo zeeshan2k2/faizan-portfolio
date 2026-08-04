@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 
 import { faqContent } from "@/content/faq";
 
 export function Faq() {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
+  const reducedMotion = Boolean(useReducedMotion());
 
   function toggleItem(id: string) {
     setOpenItems((current) => {
@@ -42,14 +43,24 @@ export function Faq() {
         <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
       </div>
 
-      <h2
+      <motion.h2
+        initial={reducedMotion ? false : { opacity: 0, x: -28 }}
+        whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.28 }}
+        transition={{ duration: 0.62, ease: "easeOut" }}
         id="faq-heading"
         className="text-center font-sans text-[clamp(3.5rem,7.5vw,6rem)] font-normal leading-none tracking-[-0.055em] text-white"
       >
         {faqContent.title}
-      </h2>
+      </motion.h2>
 
-      <div className="mt-12 sm:mt-16">
+      <motion.div
+        initial={reducedMotion ? false : { opacity: 0, x: -28 }}
+        whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.28 }}
+        transition={{ duration: 0.62, ease: "easeOut" }}
+        className="mt-12 sm:mt-16"
+      >
         {faqContent.items.map((item) => {
           const isOpen = openItems.has(item.id);
 
@@ -96,9 +107,15 @@ export function Faq() {
             </div>
           );
         })}
-      </div>
+      </motion.div>
 
-      <div className="mx-auto mt-10 text-center font-sans text-[clamp(1rem,1.4vw,1.25rem)] font-medium leading-tight tracking-[-0.025em] text-white/56 sm:mt-12">
+      <motion.div
+        initial={reducedMotion ? false : { opacity: 0, x: -28 }}
+        whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.28 }}
+        transition={{ duration: 0.62, ease: "easeOut" }}
+        className="mx-auto mt-10 text-center font-sans text-[clamp(1rem,1.4vw,1.25rem)] font-medium leading-tight tracking-[-0.025em] text-white/56 sm:mt-12"
+      >
         <p>{faqContent.footerQuestion}</p>
         <a
           href={faqContent.footerHref}
@@ -106,7 +123,7 @@ export function Faq() {
         >
           {faqContent.footerLinkLabel}
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 }
