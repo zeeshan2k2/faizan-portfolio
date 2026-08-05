@@ -3,22 +3,26 @@
 import { useState } from "react";
 import {
   ArrowUpRight,
-  Brush,
-  Crop,
+  Aperture,
+  Camera,
+  Clapperboard,
   Globe2,
-  Pen,
-  Wand2,
+  ImagePlay,
+  Megaphone,
+  SlidersHorizontal,
 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { servicesContent, type Service } from "@/content/services";
 
 const serviceIconMap = {
-  brand: Pen,
-  ui: Brush,
-  webflow: Crop,
-  framer: Wand2,
-} satisfies Record<Service["icon"], typeof Pen>;
+  videography: Clapperboard,
+  editing: ImagePlay,
+  ugc: Aperture,
+  ads: Megaphone,
+  grading: SlidersHorizontal,
+  photography: Camera,
+} satisfies Record<Service["icon"], typeof Clapperboard>;
 
 export function Services() {
   const [openServices, setOpenServices] = useState<Set<string>>(new Set());

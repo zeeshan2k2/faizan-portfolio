@@ -3,7 +3,7 @@ export type Service = {
   label: string;
   index: string;
   href: string;
-  icon: "brand" | "ui" | "webflow" | "framer";
+  icon: "videography" | "editing" | "ugc" | "ads" | "grading" | "photography";
   points: string[];
 };
 
@@ -11,54 +11,78 @@ export const servicesContent = {
   eyebrow: "My Services",
   availability: "Available Worldwide",
   contactLabel: "Contact me",
-  contactHref: "mailto:hello@example.com",
+  contactHref: "mailto:gfaiz6896@gmail.com",
   services: [
     {
-      id: "brand-design",
-      label: "Brand Design",
+      id: "videography",
+      label: "Videography",
       index: "01",
-      href: "#brand-design",
-      icon: "brand",
+      href: "#videography",
+      icon: "videography",
       points: [
-        "Typography & Color Systems",
-        "Logo Design",
-        "Brand Guidelines",
+        "Commercials, events, and documentaries",
+        "Real estate, automotive, and brand shoots",
+        "Shot planning and on-site production",
       ],
     },
     {
-      id: "ui-ux-design",
-      label: "UI/UX Design",
+      id: "video-editing",
+      label: "Video Editing",
       index: "02",
-      href: "#ui-ux-design",
-      icon: "ui",
+      href: "#editing",
+      icon: "editing",
       points: [
-        "Iconography",
-        "Imagery & Photography Style",
-        "Grid & Layout Systems",
+        "Short-form reels and promotional edits",
+        "Story pacing, sequencing, and cleanup",
+        "Platform-ready exports for social media",
       ],
     },
     {
-      id: "webflow-dev",
-      label: "Webflow Dev",
+      id: "ugc-ad-production",
+      label: "UGC Ad Production",
       index: "03",
-      href: "#webflow-dev",
-      icon: "webflow",
+      href: "#ugc-ad-production",
+      icon: "ugc",
       points: [
-        "UI Components",
-        "Library Motion & Animation Guidelines",
-        "Design Tokens",
+        "AI-assisted UGC concepts and edits",
+        "Hook-focused short ads for paid campaigns",
+        "Fast turnaround social-first deliverables",
       ],
     },
     {
-      id: "framer-dev",
-      label: "Framer Dev",
+      id: "commercial-ads",
+      label: "Commercial Ads",
       index: "04",
-      href: "#framer-dev",
-      icon: "framer",
+      href: "#commercial-ads",
+      icon: "ads",
       points: [
-        "Social Media Guidelines",
-        "Brand Architecture",
-        "Print Assets",
+        "Product, service, and campaign videos",
+        "Brand-aligned visuals and messaging",
+        "Edits built for attention and conversion",
+      ],
+    },
+    {
+      id: "color-grading-sound-design",
+      label: "Color Grading",
+      index: "05",
+      href: "#color-grading-sound-design",
+      icon: "grading",
+      points: [
+        "Color correction and mood matching",
+        "Audio cleanup, balancing, and sound design",
+        "Polished finishing for final delivery",
+      ],
+    },
+    {
+      id: "photography",
+      label: "Photography",
+      index: "06",
+      href: "#photography",
+      icon: "photography",
+      points: [
+        "Brand, product, and lifestyle captures",
+        "Event and behind-the-scenes coverage",
+        "Social-ready photo selections",
       ],
     },
   ] satisfies Service[],

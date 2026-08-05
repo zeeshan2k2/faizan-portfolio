@@ -3,7 +3,7 @@ export type ProcessStep = {
   step: string;
   title: string;
   description: string;
-  icon: "brief" | "wireframe" | "design";
+  icon: "brief" | "shoot" | "edit" | "deliver";
 };
 
 export const processContent = {
@@ -13,22 +13,33 @@ export const processContent = {
       id: "review",
       step: "Step 1",
       title: "Review The Brief",
-      description: "Understand project goals and client expectations.",
+      description:
+        "Understand the goal, audience, platform, references, deadline, and final deliverables.",
       icon: "brief",
     },
     {
-      id: "wireframe",
+      id: "plan",
       step: "Step 2",
-      title: "Sketch The WireFrame",
-      description: "Lay out structure to guide interface creation",
-      icon: "wireframe",
+      title: "Plan The Shoot",
+      description:
+        "Decide the shot direction, location flow, gear needs, framing, and production approach.",
+      icon: "shoot",
     },
     {
-      id: "design",
+      id: "film-edit",
       step: "Step 3",
-      title: "Design Progress",
-      description: "Refine the layout, colors, fonts, and spacing now",
-      icon: "design",
+      title: "Film & Edit",
+      description:
+        "Capture the footage, cut the story, shape pacing, add motion graphics, and build the main edit.",
+      icon: "edit",
+    },
+    {
+      id: "polish-deliver",
+      step: "Step 4",
+      title: "Polish & Deliver",
+      description:
+        "Color grade, clean audio, export platform-ready files, and apply final revisions.",
+      icon: "deliver",
     },
   ] satisfies ProcessStep[],
 };

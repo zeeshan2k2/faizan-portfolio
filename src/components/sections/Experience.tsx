@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 
 import { siteContent } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 type RevealCharacterProps = {
   char: string;
@@ -50,6 +51,7 @@ function RevealCharacter({
 export function Experience() {
   const { experience } = siteContent;
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeRole, setActiveRole] = useState<string | null>(null);
   const reducedMotion = Boolean(useReducedMotion());
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -111,35 +113,73 @@ export function Experience() {
       </div>
 
       <div className="mt-9 space-y-0 sm:mt-12">
-        {experience.roles.map((role) => (
-          <a
-            key={role.title}
-            href={role.href}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${role.title}, ${role.date}. ${experience.hoverLabel}`}
-            className="group block"
-          >
-            <div className="flex flex-col gap-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-6">
-              <h3 className="font-sans text-[clamp(1.35rem,1.85vw,1.8rem)] font-normal leading-none tracking-[-0.005em] text-white transition duration-300 group-hover:text-white">
-                {role.title}
-              </h3>
+        {experience.roles.map((role) => {
+          const roleKey = `${role.title}-${role.company}-${role.date}`;
+          const isActive = activeRole === roleKey;
 
-              <span className="relative h-11 w-40 shrink-0 [perspective:900px] sm:h-12 sm:w-44">
-                <span className="absolute inset-0 rounded-full [transform-style:preserve-3d] transition-transform duration-500 ease-out group-hover:[transform:rotateY(180deg)]">
-                  <span className="absolute inset-0 grid place-items-center rounded-full bg-white/[0.08] px-5 text-base font-medium tracking-[-0.005em] text-white/82 [backface-visibility:hidden] sm:text-lg">
-                    {role.date}
-                  </span>
-                  <span className="absolute inset-0 grid place-items-center rounded-full bg-[var(--accent)] px-5 text-base font-semibold tracking-[-0.005em] text-black [backface-visibility:hidden] [transform:rotateY(180deg)] sm:text-lg">
-                    {experience.hoverLabel}
+          return (
+            <button
+              key={roleKey}
+              type="button"
+              aria-expanded={isActive}
+              aria-label={`${role.title} at ${role.company}, ${role.date}. ${experience.hoverLabel}`}
+              onClick={() => setActiveRole(isActive ? null : roleKey)}
+              className="group block w-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+            >
+              <div className="flex flex-col gap-5 py-5 sm:flex-row sm:items-start sm:justify-between sm:gap-8 sm:py-6">
+                <div className="min-w-0">
+                  <h3 className="font-sans text-[clamp(1.35rem,1.85vw,1.8rem)] font-normal leading-none tracking-[-0.005em] text-white transition duration-300 group-hover:text-white">
+                    {role.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-medium text-white/42 sm:text-base">
+                    {role.company}
+                  </p>
+                </div>
+
+                <span className="relative h-11 w-52 shrink-0 [perspective:900px] sm:h-12 sm:w-60">
+                  <span
+                    className={cn(
+                      "absolute inset-0 rounded-full [transform-style:preserve-3d] transition-transform duration-500 ease-out group-hover:[transform:rotateY(180deg)]",
+                      isActive && "[transform:rotateY(180deg)]",
+                    )}
+                  >
+                    <span className="absolute inset-0 grid place-items-center rounded-full bg-white/[0.08] px-5 text-base font-medium tracking-[-0.005em] text-white/82 [backface-visibility:hidden] sm:text-lg">
+                      {role.date}
+                    </span>
+                    <span className="absolute inset-0 grid place-items-center rounded-full bg-[var(--accent)] px-5 text-base font-semibold tracking-[-0.005em] text-black [backface-visibility:hidden] [transform:rotateY(180deg)] sm:text-lg">
+                      {experience.hoverLabel}
+                    </span>
                   </span>
                 </span>
-              </span>
-            </div>
+              </div>
 
-            <div className="h-px w-full bg-white/12 transition-colors duration-300 group-hover:bg-[var(--accent)]" />
-          </a>
-        ))}
+              <div
+                className={cn(
+                  "grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out",
+                  isActive && "grid-rows-[1fr]",
+                )}
+              >
+                <div className="overflow-hidden">
+                  <p
+                    className={cn(
+                      "max-w-2xl -translate-y-1 pb-5 text-sm leading-6 text-white/48 opacity-0 transition duration-300 sm:text-base",
+                      isActive && "translate-y-0 opacity-100",
+                    )}
+                  >
+                    {role.description}
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className={cn(
+                  "h-px w-full bg-white/12 transition-colors duration-300 group-hover:bg-[var(--accent)]",
+                  isActive && "bg-[var(--accent)]",
+                )}
+              />
+            </button>
+          );
+        })}
       </div>
     </section>
   );

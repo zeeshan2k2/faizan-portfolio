@@ -1,20 +1,23 @@
 "use client";
 
-import { FileText, Image, Layers, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Transition } from "framer-motion";
 import NextImage from "next/image";
+import type { IconType } from "react-icons";
+import { FaLinkedinIn } from "react-icons/fa";
+import { SiBehance, SiGmail, SiInstagram } from "react-icons/si";
 
 import { siteContent, type SocialIcon } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const socialIconMap = {
-  code: Layers,
-  profile: FileText,
-  gallery: Image,
-  mail: Mail,
-} satisfies Record<SocialIcon, typeof Mail>;
+  behance: SiBehance,
+  linkedin: FaLinkedinIn,
+  instagram: SiInstagram,
+  gmail: SiGmail,
+} satisfies Record<SocialIcon, IconType>;
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -115,9 +118,9 @@ export function Hero() {
                 href={social.href}
                 aria-label={social.label}
                 title={social.label}
-                className="grid size-11 place-items-center rounded-full border border-white/10 bg-white/[0.045] text-white/82 transition duration-200 hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+                className="grid size-12 place-items-center rounded-full border border-white/12 bg-white/[0.06] text-white/95 transition duration-200 hover:border-white/24 hover:bg-white/[0.1] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
               >
-                <Icon className="size-4" aria-hidden="true" />
+                <Icon className="size-[22px]" aria-hidden="true" />
               </a>
             );
           })}

@@ -5,21 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { techStackContent, type TechItem } from "@/content/tech";
 
-function FramerIcon() {
-  return (
-    <svg
-      aria-label="Framer icon"
-      className="size-20 sm:size-24"
-      viewBox="0 0 120 120"
-      role="img"
-    >
-      <path d="M34 22h54v28H61L34 22Z" fill="#55D7F8" />
-      <path d="M34 50h54L61 78H34V50Z" fill="#0997FF" />
-      <path d="M34 78h27v28L34 78Z" fill="#075CFB" />
-    </svg>
-  );
-}
-
 function TechCard({ item }: { item: TechItem }) {
   return (
     <article className="flex h-[350px] w-[calc((100%_-_2rem)/2)] min-w-[calc((100%_-_2rem)/2)] shrink-0 flex-col items-center justify-between rounded-[24px] bg-[#151515]/90 px-7 py-11 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] sm:h-[400px] sm:rounded-[30px] sm:px-10">
@@ -28,16 +13,12 @@ function TechCard({ item }: { item: TechItem }) {
       </h3>
 
       <div className="grid size-32 place-items-center rounded-[16px] bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:size-40 sm:rounded-[20px]">
-        {item.id === "framer" ? (
-          <FramerIcon />
-        ) : (
-          <img
-            src={item.iconUrl}
-            alt={`${item.name} icon`}
-            className="size-20 object-contain sm:size-24"
-            loading="lazy"
-          />
-        )}
+        <img
+          src={item.iconUrl}
+          alt={`${item.name} icon`}
+          className="size-20 object-contain sm:size-24"
+          loading="lazy"
+        />
       </div>
 
       <p className="font-sans text-[clamp(1.05rem,1.6vw,1.35rem)] font-normal leading-tight tracking-[-0.035em] text-white/88">

@@ -1,15 +1,16 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Brush, Crop, Pen } from "lucide-react";
+import { CheckCircle2, Clapperboard, FileText, Scissors } from "lucide-react";
 
 import { processContent, type ProcessStep } from "@/content/process";
 
 const processIconMap = {
-  brief: Pen,
-  wireframe: Crop,
-  design: Brush,
-} satisfies Record<ProcessStep["icon"], typeof Pen>;
+  brief: FileText,
+  shoot: Clapperboard,
+  edit: Scissors,
+  deliver: CheckCircle2,
+} satisfies Record<ProcessStep["icon"], typeof FileText>;
 
 function ProcessCard({ step }: { step: ProcessStep }) {
   const Icon = processIconMap[step.icon];

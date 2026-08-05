@@ -76,7 +76,8 @@ export const workCategories = [
     id: "videography",
     label: "Creative Service",
     title: "Videography",
-    description: "Reels, brand shoots, event coverage, and cinematic social content.",
+    description:
+      "Commercials, events, real estate, automotive reels, and brand shoots captured with a social-first eye.",
     cta: "View Work",
     image: {
       src: "/images/work-card.png",
@@ -191,7 +192,8 @@ export const workCategories = [
     id: "editing",
     label: "Creative Service",
     title: "Editing",
-    description: "Short-form edits, pacing, color, sound, and polished final delivery.",
+    description:
+      "UGC ads, promotional videos, color grading, sound design, motion graphics, and polished final exports.",
     cta: "View Work",
     image: {
       src: "/images/work-card.png",
@@ -248,7 +250,8 @@ export const workCategories = [
     id: "short-films",
     label: "Creative Service",
     title: "Short Films",
-    description: "Narrative edits, compact story cuts, and polished film sequences.",
+    description:
+      "Story-led edits, documentary-style cuts, pacing, sound, and cinematic sequences built from raw footage.",
     cta: "View Work",
     image: {
       src: "/images/work-card.png",
