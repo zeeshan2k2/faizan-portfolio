@@ -9,7 +9,7 @@ function BrandLogo({ item }: { item: BrandItem }) {
   return (
     <div
       className={cn(
-        "flex h-36 min-w-[180px] items-center justify-center px-4 sm:h-44 sm:min-w-[220px] sm:px-5",
+        "flex h-32 min-w-[140px] items-center justify-center px-2 sm:h-44 sm:min-w-[220px] sm:px-5",
         item.wrapperClassName,
       )}
     >
@@ -17,7 +17,7 @@ function BrandLogo({ item }: { item: BrandItem }) {
         src={item.logo}
         alt={`${item.name} logo`}
         className={cn(
-          "max-h-20 max-w-[170px] object-contain opacity-90 transition duration-300 [filter:brightness(0)_invert(1)] hover:opacity-100 sm:max-h-24 sm:max-w-[210px]",
+          "max-h-[72px] max-w-[132px] object-contain opacity-90 transition duration-300 [filter:brightness(0)_invert(1)] hover:opacity-100 sm:max-h-24 sm:max-w-[210px]",
           item.logoClassName,
         )}
         loading="lazy"
@@ -57,7 +57,7 @@ export function BrandCarousel() {
 
       <div className="relative mt-14 overflow-hidden [mask-image:linear-gradient(90deg,transparent_0%,black_9%,black_91%,transparent_100%)] sm:mt-[4.5rem]">
         <motion.div
-          className="flex w-max items-center gap-5 sm:gap-7"
+          className="flex w-max items-center gap-2 sm:gap-7"
           animate={reducedMotion ? undefined : { x: "-50%" }}
           transition={
             reducedMotion
