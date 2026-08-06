@@ -12,11 +12,11 @@ function TechCard({ item }: { item: TechItem }) {
         {item.name}
       </h3>
 
-      <div className="grid size-32 place-items-center rounded-[16px] bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:size-40 sm:rounded-[20px]">
+      <div className="grid size-32 place-items-center rounded-[16px] bg-transparent shadow-none sm:size-40 sm:rounded-[20px]">
         <img
           src={item.iconUrl}
           alt={`${item.name} icon`}
-          className="size-20 object-contain sm:size-24"
+          className="size-24 object-contain sm:size-32"
           loading="lazy"
         />
       </div>

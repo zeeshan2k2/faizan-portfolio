@@ -7,7 +7,7 @@ export type BrandItem = {
 };
 
 export const brandCarouselContent = {
-  label: "Work with 60+ brands worldwide",
+  label: "Work with 30+ brands worldwide",
   items: [
     {
       id: "ar-rehman-motors",

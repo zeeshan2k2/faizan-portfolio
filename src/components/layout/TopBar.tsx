@@ -11,7 +11,7 @@ export function TopBar() {
         <div className="absolute bottom-0 left-[calc(50%-520px)] size-2 bg-white/55" />
         <div className="absolute bottom-0 right-[calc(50%-520px)] size-2 bg-white/55" />
       </div>
-      <div className="mx-auto grid min-h-20 w-full max-w-[920px] grid-cols-[1fr_auto] items-center gap-4 px-5 py-4 sm:grid-cols-3 sm:px-8 lg:min-h-28">
+      <div className="mx-auto grid min-h-20 w-full max-w-[920px] grid-cols-[1fr_auto] items-center gap-4 px-8 py-4 sm:grid-cols-3 sm:px-8 lg:min-h-28">
         <a
           href="#home"
           className="group flex min-w-0 items-center justify-self-start"
