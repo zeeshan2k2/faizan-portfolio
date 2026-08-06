@@ -75,7 +75,7 @@ export const siteContent = {
       },
       {
         label: "Instagram",
-        href: "https://www.instagram.com/",
+        href: "https://www.instagram.com/fw._.motion/",
         icon: "instagram",
       },
       {
