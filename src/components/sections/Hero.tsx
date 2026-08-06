@@ -3,21 +3,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { Transition } from "framer-motion";
 import NextImage from "next/image";
-import type { IconType } from "react-icons";
-import { FaLinkedinIn } from "react-icons/fa";
-import { SiBehance, SiGmail, SiInstagram } from "react-icons/si";
 
-import { siteContent, type SocialIcon } from "@/content/site";
+import { siteContent } from "@/content/site";
 import { Button } from "@/components/ui/Button";
+import { socialIconMap } from "@/components/ui/SocialIcon";
 import { cn } from "@/lib/utils";
-
-const socialIconMap = {
-  behance: SiBehance,
-  linkedin: FaLinkedinIn,
-  instagram: SiInstagram,
-  gmail: SiGmail,
-} satisfies Record<SocialIcon, IconType>;
-
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },

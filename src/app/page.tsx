@@ -8,6 +8,7 @@ import { BrandCarousel } from "@/components/sections/BrandCarousel";
 import { Process } from "@/components/sections/Process";
 import { Contact } from "@/components/sections/Contact";
 import { Faq } from "@/components/sections/Faq";
+import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Process />
       <Contact />
       <Faq />
+      <Footer />
     </SiteShell>
   );
 }
