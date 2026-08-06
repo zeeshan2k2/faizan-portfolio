@@ -42,6 +42,7 @@ export function FloatingNav() {
       const viewportAnchor = window.innerHeight * 0.46;
       let nextActiveId = sectionIds[0] ?? "home";
       let closestDistance = Number.POSITIVE_INFINITY;
+      let matchedSection = false;
 
       sectionIds.forEach((id) => {
         const section = document.getElementById(id);
@@ -54,7 +55,13 @@ export function FloatingNav() {
         const isInView = rect.top <= viewportAnchor && rect.bottom >= viewportAnchor;
         const distance = Math.abs(rect.top - viewportAnchor);
 
-        if (isInView || distance < closestDistance) {
+        if (isInView) {
+          matchedSection = true;
+          nextActiveId = id;
+          return;
+        }
+
+        if (!matchedSection && distance < closestDistance) {
           closestDistance = distance;
           nextActiveId = id;
         }

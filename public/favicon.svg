@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Faizan logo">
+  <defs>
+    <radialGradient id="orange-glow" cx="78%" cy="18%" r="70%">
+      <stop offset="0%" stop-color="#ff6a1a" stop-opacity="0.34" />
+      <stop offset="42%" stop-color="#ff6a1a" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#030303" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8a2a" />
+      <stop offset="100%" stop-color="#ff3b13" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="104" fill="#050505" />
+  <rect width="512" height="512" rx="104" fill="url(#orange-glow)" />
+  <path d="M366 92h54v54h-54z" fill="url(#accent)" />
+  <text
+    x="256"
+    y="306"
+    fill="#ffffff"
+    font-family="Rajdhani, Arial, Helvetica, sans-serif"
+    font-size="190"
+    font-weight="600"
+    letter-spacing="-12"
+    text-anchor="middle"
+  >FZ</text>
+  <rect x="118" y="348" width="276" height="12" rx="6" fill="#ffffff" opacity="0.16" />
+</svg>

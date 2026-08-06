@@ -7,7 +7,7 @@ import { techStackContent, type TechItem } from "@/content/tech";
 
 function TechCard({ item }: { item: TechItem }) {
   return (
-    <article className="flex h-[350px] w-[calc((100%_-_2rem)/2)] min-w-[calc((100%_-_2rem)/2)] shrink-0 flex-col items-center justify-between rounded-[24px] bg-[#151515]/90 px-7 py-11 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] sm:h-[400px] sm:rounded-[30px] sm:px-10">
+    <article className="flex h-[350px] w-[calc((100%_-_2rem)/2)] min-w-[calc((100%_-_2rem)/2)] shrink-0 flex-col items-center justify-between rounded-[24px] bg-[#151515]/90 px-7 py-11 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] ring-1 ring-white/[0.035] sm:h-[400px] sm:rounded-[30px] sm:px-10">
       <h3 className="font-sans text-[clamp(2.35rem,4vw,3.75rem)] font-normal leading-none tracking-[-0.045em] text-white">
         {item.name}
       </h3>
@@ -87,7 +87,7 @@ export function TechStack() {
         {techStackContent.title}
       </motion.h2>
 
-      <div className="mt-14 overflow-hidden sm:mt-20">
+      <div className="mt-14 overflow-hidden bg-transparent shadow-none ring-0 sm:mt-20">
         <motion.div
           className="flex gap-8"
           animate={

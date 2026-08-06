@@ -266,8 +266,17 @@ function WorkCategoryCard({
   const gradient = categoryGradientMap[category.id];
 
   return (
-    <article
-      className="group relative min-h-[220px] overflow-hidden rounded-[24px] bg-[#151515]/90 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] sm:min-h-[235px] sm:rounded-[30px] sm:p-7"
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={isOpen}
+      aria-controls={`${category.id}-details`}
+      aria-label={`${isOpen ? "Hide" : "View"} ${category.title}`}
+      title={`${isOpen ? "Hide" : "View"} ${category.title}`}
+      className="group relative block min-h-[220px] w-full overflow-hidden rounded-[24px] bg-[#151515]/90 p-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_24px_70px_rgba(0,0,0,0.46)] ring-1 ring-white/[0.035] transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:min-h-[235px] sm:rounded-[30px] sm:p-7"
+    >
+      <article
+      className="contents"
       aria-label={category.title}
     >
       <div className={`absolute inset-0 ${gradient.wash}`} />
@@ -290,15 +299,7 @@ function WorkCategoryCard({
             </span>
           </div>
 
-          <button
-            type="button"
-            onClick={onToggle}
-            aria-expanded={isOpen}
-            aria-controls={`${category.id}-details`}
-            aria-label={`${isOpen ? "Hide" : "View"} ${category.title}`}
-            title={`${isOpen ? "Hide" : "View"} ${category.title}`}
-            className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-[20px] border border-white/22 bg-black/12 transition duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_34px_rgba(255,106,26,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] sm:size-24 sm:rounded-[26px]"
-          >
+          <span className="relative grid size-16 shrink-0 place-items-center overflow-hidden rounded-[20px] border border-white/22 bg-black/12 transition duration-300 group-hover:-translate-y-1 group-hover:border-[var(--accent)] group-hover:shadow-[0_0_34px_rgba(255,106,26,0.18)] sm:size-24 sm:rounded-[26px]">
             <ArrowUpRight
               className="absolute size-8 transform-gpu stroke-white transition-all duration-300 ease-out group-hover:translate-x-16 group-hover:-translate-y-16 group-hover:stroke-[var(--accent)] sm:size-12 sm:group-hover:translate-x-24 sm:group-hover:-translate-y-24"
               aria-hidden="true"
@@ -307,9 +308,10 @@ function WorkCategoryCard({
               className="absolute size-8 -translate-x-16 translate-y-16 transform-gpu stroke-white transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:stroke-[var(--accent)] sm:size-12 sm:-translate-x-24 sm:translate-y-24"
               aria-hidden="true"
             />
-          </button>
+          </span>
       </div>
     </article>
+    </button>
   );
 }
 

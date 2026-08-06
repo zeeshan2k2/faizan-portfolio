@@ -8,37 +8,37 @@ export const faqContent = {
   title: "FAQS",
   footerQuestion: "Do you have any other questions?",
   footerLinkLabel: "Ask me directly",
-  footerHref: "mailto:hello@example.com",
+  footerHref: "mailto:gfaiz6896@gmail.com",
   items: [
     {
-      id: "process",
-      question: "What's the Jayden's progress like?",
+      id: "video-types",
+      question: "What type of videos do you create?",
       answer:
-        "I specialize in UX/UI design, web development, and branding for individuals and businesses.",
+        "I create social media ads, UGC videos, commercials, documentaries, corporate videos, event coverage, real estate reels, automotive content, and short-form brand videos.",
     },
     {
-      id: "delivery",
-      question: "Design delivery time estimate?",
+      id: "shoot-edit",
+      question: "Do you handle both shooting and editing?",
       answer:
-        "Designs are typically delivered within 3-5 business days, depending on project scope and complexity.",
+        "Yes. I can handle the full production flow, including filming, editing, color correction, color grading, sound design, motion graphics, and final exports.",
     },
     {
-      id: "services",
-      question: "What Service do You offer?",
+      id: "existing-footage",
+      question: "Can you edit footage I already have?",
       answer:
-        "I offer UI/UX design, Webflow/Framer builds, and full-stack implementation using React, WordPress, or Laravel.",
+        "Yes. If you already have raw footage, I can turn it into a polished edit with pacing, sequencing, audio cleanup, color work, motion graphics, and platform-ready formatting.",
     },
     {
-      id: "revisions",
-      question: "What if I don't like design?",
+      id: "timeline",
+      question: "How long does delivery usually take?",
       answer:
-        "You'll receive revisions based on your feedback until you're satisfied, within the scope of the plan.",
+        "Timeline depends on the scope, length, platform, and revision needs. Short-form edits are usually faster, while shoots, commercials, and documentary-style videos need more planning and post-production time.",
     },
     {
-      id: "refund",
-      question: "Are there any Refund?",
+      id: "start-project",
+      question: "How do we start a project?",
       answer:
-        "Refunds aren't available once work has started, but I ensure satisfaction through clear communication and revisions.",
+        "Send the project details, goals, references, deadline, and where the video will be used. From there, I can confirm the scope, plan the workflow, and guide the next steps.",
     },
   ] satisfies FaqItem[],
 };
