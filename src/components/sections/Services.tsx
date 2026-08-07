@@ -104,9 +104,9 @@ export function Services() {
                     <Icon className="size-6" aria-hidden="true" />
                   </motion.span>
 
-                  <span className="min-w-0 truncate font-sans text-[clamp(3rem,7vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-white/30 transition-colors duration-300 group-hover:text-white/72">
+                  <span className="min-w-0 whitespace-normal break-words font-sans text-[clamp(2.4rem,11vw,3.3rem)] font-normal leading-[0.9] tracking-[-0.055em] text-white/30 transition-colors duration-300 group-hover:text-white/72 sm:truncate sm:text-[clamp(3rem,7vw,6.25rem)] sm:leading-[0.86]">
                     {service.label}
-                    <span className="relative -top-[2.92em] ml-3 inline-block text-[0.18em] font-medium leading-none tracking-[-0.03em] text-white/30 transition-colors duration-300 group-hover:text-[var(--accent)]">
+                    <span className="relative -top-[1.95em] ml-2 inline-block text-[0.2em] font-medium leading-none tracking-[-0.03em] text-white/30 transition-colors duration-300 group-hover:text-[var(--accent)] sm:-top-[2.92em] sm:ml-3 sm:text-[0.18em]">
                       [{service.index}]
                     </span>
                   </span>
